@@ -1,0 +1,10 @@
+streamlit
+pandas
+pandas_ta
+numpy
+yfinance
+plotly
+requests
+pytz
+smartapi-python
+pyotp
