@@ -142,13 +142,17 @@ def calculate_signals(df, strategy):
         elif last['EMA9'] < last['EMA21'] and last['RSI'] < 45: sig = "SELL"
     
     elif "Momentum" in strategy:
-        if last['Close'] > last['EMA9']: sig = "BUY"
-        else: sig = "SELL"
-        
+        if last['Close'] > last['EMA9']:
+            sig = "BUY"
+        else:
+            sig = "SELL"
+            
     elif "Golden" in strategy:
-        if last['EMA9'] > last['EMA21']: sig = "BUY"
-        else: sig = "SELL"
-        
+        if last['EMA9'] > last['EMA21']:
+            sig = "BUY"
+        else:
+            sig = "SELL"
+            
     elif "Supertrend" in strategy:
         st_data = df.ta.supertrend(length=10, multiplier=3)
         if st_data is not None:
@@ -160,7 +164,6 @@ def calculate_signals(df, strategy):
         macd = df.ta.macd(fast=12, slow=26, signal=9)
         if macd is not None:
             df = pd.concat([df, macd], axis=1)
-            # Corrected Indentation Here
             if last['Close'] > last['VWAP'] and last[df.columns[-3]] > last[df.columns[-1]]: sig = "BUY"
             elif last['Close'] < last['VWAP'] and last[df.columns[-3]] < last[df.columns[-1]]: sig = "SELL"
             
